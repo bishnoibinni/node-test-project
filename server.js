@@ -7,9 +7,7 @@ var db = mongojs('contactlist',['contactlist']);
 var bodyParser = require('body-parser');
 var db = mongojs('contactlist',['contactlist']);
 
-/*app.get('/', function(req, res) {
-	res.send("Hello world from server.js");
-});*/
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -54,5 +52,5 @@ app.put('/contactList/:id', function(req, res) {
 	});
 });
 
-app.listen(3000);
+app.listen(5000);
 console.log("Server running on port");
