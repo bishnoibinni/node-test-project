@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var mongojs = require('mongojs');
-var mongodbString = 'mongodb://' + process.env.MONGOLAB_URI;
+var mongodbString = 'mongodb://' + process.env.MONGOLAB_URI + '?auto_reconnect=true';
 var db = mongojs(mongodbString,['contactlist']);
 
 var bodyParser = require('body-parser');
