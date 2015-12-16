@@ -6,7 +6,6 @@ var mongodbString = 'mongodb://' + process.env.MONGOLAB_URI;
 var db = mongojs(mongodbString,['contactlist']);
 
 var bodyParser = require('body-parser');
-var db = mongojs('contactlist',['contactlist']);
 
 app.set('port', (process.env.PORT || 5000));
 
