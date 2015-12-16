@@ -1,0 +1,46 @@
+angular.module('myApp', []).controller('ControllerApp', ControllerApp);
+function ControllerApp($scope, $http) {
+	var refresh = function () {
+		$http.get('/contactList').success(function(response) {
+			$scope.contactList = response;
+			$scope.contact = "";
+		});
+	};
+
+	refresh();
+	
+	$scope.addContact = function() {
+		console.log("Add Contact is clicked", $scope.contact);
+		$http.post('/contactlist', $scope.contact).success(function(response) {
+			console.log('HTTP POST RESPONSE : ', response);
+			refresh();
+		});
+	};
+
+	$scope.remove = function(id) {
+		console.log('remove id :', id);
+		$http.delete('/contactlist/' + id).success(function(response) {
+			refresh();
+		});
+	};
+
+	$scope.edit = function(id) {
+		console.log('edit id :', id);
+		$http.get('/contactList/' + id).success(function(response) {
+			$scope.contact = response;
+		});
+	};
+
+
+	$scope.update = function() {
+		console.log($scope.contact._id);
+		$http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response) {
+			refresh();
+		});
+	};
+
+	$scope.deselect = function() {
+		$scope.contact = "";
+	};
+
+}
